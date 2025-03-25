@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         RAILWAY_TOKEN = credentials('railway-api-token')   // Token Railway (Lưu trong Jenkins Credentials)
-        RAILWAY_PROJECT_ID = '9fc70ae7-0d1d-4080-969a-7ac6aecd4086'  // ID Project trên Railway
+        RAILWAY_PROJECT_ID = 'a1fcb830-8a46-4160-81a3-95bfa21636f3'  // ID Project trên Railway
         NPM_CONFIG_PREFIX = "/var/jenkins_home/.npm-global"
         PATH = "/var/jenkins_home/.npm-global/bin:$PATH"
     }
