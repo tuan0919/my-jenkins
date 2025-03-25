@@ -79,7 +79,7 @@ pipeline {
                 sh '''
                 export RAILWAY_TOKEN=$RAILWAY_TOKEN
                 export RAILWAY_API_TOKEN=$RAILWAY_API_TOKEN
-                railway up
+                railway up --service=nodejs
                 '''
             }
         }
