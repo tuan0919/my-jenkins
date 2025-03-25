@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        RAILWAY_TOKEN = credentials('railway-api-token')   // Token Railway (Lưu trong Jenkins Credentials)
-        RAILWAY_PROJECT_ID = 'a1fcb830-8a46-4160-81a3-95bfa21636f3'  // ID Project trên Railway
+        RAILWAY_API_TOKEN = credentials('railway-api-token')   // Token Railway (Lưu trong Jenkins Credentials)
+        RAILWAY_TOKEN = 'a1fcb830-8a46-4160-81a3-95bfa21636f3'  // ID Project trên Railway
         NPM_CONFIG_PREFIX = "/var/jenkins_home/.npm-global"
         PATH = "/var/jenkins_home/.npm-global/bin:$PATH"
     }
@@ -78,7 +78,7 @@ pipeline {
             steps {
                 sh '''
                 export RAILWAY_TOKEN=$RAILWAY_TOKEN
-                export RAILWAY_PROJECT_ID=$RAILWAY_PROJECT_ID
+                export RAILWAY_API_TOKEN=$RAILWAY_API_TOKEN
                 railway up --service=web
                 '''
             }
