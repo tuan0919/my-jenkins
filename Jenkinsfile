@@ -25,6 +25,12 @@ pipeline {
             }
         }
 
+        stage('Check current user') {
+            steps {
+                sh 'whoami'
+            }
+        }
+
         stage('Check Railway CLI') {
             steps {
                 sh 'which railway || echo "🚨 Railway CLI not found!"'
@@ -32,16 +38,24 @@ pipeline {
             }
         }
 
+
         stage('Setup Railway CLI') {
             steps {
                 sh '''
-                if ! command -v railway &> /dev/null
-                then
-                    echo "🚀 Cài đặt Railway CLI..."
-                    npm i -g @railway/cli
-                else
-                    echo "✅ Railway CLI đã có sẵn"
-                fi
+        export NPM_CONFIG_PREFIX=~/.npm-global
+        export PATH=$HOME/.npm-global/bin:$PATH
+
+        if ! command -v railway &> /dev/null
+        then
+            echo "🚀 Cài đặt Railway CLI..."
+            npm config set prefix ~/.npm-global
+            npm install -g @railway/cli
+            echo "✅ Railway CLI đã được cài đặt!"
+        else
+            echo "✅ Railway CLI đã có sẵn"
+        fi
+
+        echo "🔍 Kiểm tra đường dẫn railway: $(which railway)"
                 '''
             }
         }
