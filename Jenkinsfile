@@ -10,12 +10,10 @@ pipeline {
         pollSCM('H/1 * * * *') // Kiểm tra Git mỗi 1 phút
     }
 
-    stages {
-        stage('Debug Env') {
-            steps {
-                sh 'echo "RAILWAY_TOKEN=$RAILWAY_TOKEN"'
-                sh 'echo "RAILWAY_PROJECT_ID=$RAILWAY_PROJECT_ID"'
-            }
+    stage('Debug Env') {
+        steps {
+            sh 'echo "RAILWAY_TOKEN=$RAILWAY_TOKEN"'
+            sh 'echo "RAILWAY_PROJECT_ID=$RAILWAY_PROJECT_ID"'
         }
     }
 
