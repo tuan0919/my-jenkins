@@ -11,6 +11,22 @@ pipeline {
     }
 
     stages {
+        stage('Debug Env') {
+            steps {
+                sh 'echo "RAILWAY_TOKEN=$RAILWAY_TOKEN"'
+                sh 'echo "RAILWAY_PROJECT_ID=$RAILWAY_PROJECT_ID"'
+            }
+        }
+    }
+
+    stage('Check Railway CLI') {
+            steps {
+                sh 'which railway || echo "🚨 Railway CLI not found!"'
+                sh 'echo $PATH'
+            }
+    }
+
+    stages {
         stage('Checkout Code') {
             steps {
                 git branch: 'main', url: 'https://github.com/tuan0919/my-jenkins.git'
@@ -24,9 +40,6 @@ pipeline {
                 if ! command -v railway &> /dev/null
                 then
                     echo "🚀 Cài đặt Railway CLI..."
-                    mkdir -p $HOME/.npm-global
-                    npm config set prefix "$HOME/.npm-global"
-                    export PATH="$HOME/.npm-global/bin:$PATH"
                     npm i -g @railway/cli
                 else
                     echo "✅ Railway CLI đã có sẵn"
