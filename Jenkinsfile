@@ -24,6 +24,9 @@ pipeline {
                 if ! command -v railway &> /dev/null
                 then
                     echo "🚀 Cài đặt Railway CLI..."
+                    mkdir -p $HOME/.npm-global
+                    npm config set prefix "$HOME/.npm-global"
+                    export PATH="$HOME/.npm-global/bin:$PATH"
                     npm i -g @railway/cli
                 else
                     echo "✅ Railway CLI đã có sẵn"
