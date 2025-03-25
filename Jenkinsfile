@@ -4,6 +4,8 @@ pipeline {
     environment {
         RAILWAY_TOKEN = credentials('railway-api-token')   // Token Railway (Lưu trong Jenkins Credentials)
         RAILWAY_PROJECT_ID = '9fc70ae7-0d1d-4080-969a-7ac6aecd4086'  // ID Project trên Railway
+        NPM_CONFIG_PREFIX = "/var/jenkins_home/.npm-global"
+        PATH = "/var/jenkins_home/.npm-global/bin:$PATH"
     }
 
     triggers {
