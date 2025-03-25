@@ -14,6 +14,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 git branch: 'main', url: 'https://github.com/tuan0919/my-jenkins.git'
+                sh 'ls -R'
             }
         }
 
@@ -35,7 +36,7 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                dir('my-jenkins/jenkin-demo-project') {
+                dir('my-jenkins') {
                     sh 'npm install'
                 }
             }
@@ -43,7 +44,7 @@ pipeline {
 
         stage('Build Project') {
             steps {
-                dir('my-jenkins/jenkin-demo-project') {
+                dir('my-jenkins') {
                     sh 'npm run build'
                 }
             }
@@ -51,7 +52,7 @@ pipeline {
 
         stage('Deploy to Railway') {
             steps {
-                dir('my-jenkins/jenkin-demo-project') {
+                dir('my-jenkins') {
                     sh '''
                     export RAILWAY_TOKEN=$RAILWAY_TOKEN
                     export RAILWAY_PROJECT_ID=$RAILWAY_PROJECT_ID
