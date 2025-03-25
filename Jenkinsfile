@@ -37,29 +37,23 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                dir('my-jenkins') {
-                    sh 'npm install'
-                }
+                sh 'npm install'
             }
         }
 
         stage('Build Project') {
             steps {
-                dir('my-jenkins') {
-                    sh 'npm run build'
-                }
+                sh 'npm run build'
             }
         }
 
         stage('Deploy to Railway') {
             steps {
-                dir('my-jenkins') {
-                    sh '''
-                    export RAILWAY_TOKEN=$RAILWAY_TOKEN
-                    export RAILWAY_PROJECT_ID=$RAILWAY_PROJECT_ID
-                    railway up --service=web
-                    '''
-                }
+                sh '''
+                export RAILWAY_TOKEN=$RAILWAY_TOKEN
+                export RAILWAY_PROJECT_ID=$RAILWAY_PROJECT_ID
+                railway up --service=web
+                '''
             }
         }
     }
