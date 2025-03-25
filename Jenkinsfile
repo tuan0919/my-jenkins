@@ -24,9 +24,8 @@ pipeline {
                 if ! command -v railway &> /dev/null
                 then
                     echo "🚀 Cài đặt Railway CLI..."
-                    mkdir -p ~/.local/bin
-                    npm install railway -g --prefix ~/.local
-                    export PATH=$HOME/.local/bin:$PATH
+                    npm install --prefix $HOME/.railway -g railway
+                    export PATH=$HOME/.railway/bin:$PATH
                 else
                     echo "✅ Railway CLI đã có sẵn"
                 fi
